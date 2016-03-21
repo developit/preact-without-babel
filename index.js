@@ -10,7 +10,13 @@ function createClass(obj) {
 	function F(){ preact.Component.call(this); }
 	var p = F.prototype = Object.create(preact.Component.prototype);
 	// copy our skeleton into the prototype:
-	for (var i in obj) p[i] = obj[i];
+	for (var i in obj) {
+            if (i === 'getDefaultProps' && typeof obj.getDefaultProps === 'function') {
+                F.defaultProps = obj.getDefaultProps() || {};
+            } else {
+                p[i] = obj[i];
+            }
+        }
 	// restore constructor:
 	return p.constructor = F;
 }
