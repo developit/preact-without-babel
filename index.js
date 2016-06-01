@@ -23,17 +23,17 @@ class App extends Component {
 const Header = (props) => {
 	return h('header', null,
 		h('h1', null, 'App'),
-		props.message ? h('h2', null, props.message) : null
+		props.message && h('h2', null, props.message)
 	);
-}
+};
 
 
 /** Instead of JSX, use: h(type, props, ...children) */
 class Main extends Component {
 	render() {
-		const items = [1,2,3,4,5].map((item) => {
-			return h('li', {id:item}, 'Item '+item);
-		});
+		const items = [1,2,3,4,5].map( (item) => (
+			h('li', {id:item}, 'Item '+item)
+		));
 		return (
 			h('main', null,
 				h('ul', null, items)
