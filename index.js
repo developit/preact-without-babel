@@ -1,7 +1,4 @@
-'use strict';
-
-const { Component, h, render } = window.preact;
-
+import { html, render, Component } from 'https://unpkg.com/htm/preact/standalone.module.js'
 
 /** Example classful component */
 class App extends Component {
@@ -9,38 +6,39 @@ class App extends Component {
 		this.setState({ message:'Hello!' });
 	}
 	render(props, state) {
-		return (
-			h('div', {id:'app'},
-				h(Header, { message: state.message }),
-				h(Main)
-			)
-		);
+		return html`
+			<div id="app">
+				<${Header} message=${state.message} />
+				<${Main} />
+			</div>
+		`
 	}
 }
 
 
 /** Components can just be pure functions */
 const Header = (props) => {
-	return h('header', null,
-		h('h1', null, 'App'),
-		props.message && h('h2', null, props.message)
-	);
+	return html`
+		<h1>App</h1>
+		${props.message && html`<h2>${props.message}</h2>`}
+	`
 };
 
 
 /** Instead of JSX, use: h(type, props, ...children) */
 class Main extends Component {
 	render() {
-		const items = [1,2,3,4,5].map( (item) => (
-			h('li', {id:item}, 'Item '+item)
-		));
-		return (
-			h('main', null,
-				h('ul', null, items)
-			)
-		);
+		const items = [1,2,3,4,5].map( (item) => html`
+			<li id=${item}>Item ${item}</li>
+		`);
+
+		return html`
+			<main>
+				<ul>${items}</ul>
+			</main>
+		`
 	}
 }
 
 
-render(h(App), document.body);
+render(html`<${App} />`, document.body);
