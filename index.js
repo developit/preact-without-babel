@@ -25,7 +25,7 @@ const Header = (props) => {
 };
 
 
-/** Instead of JSX, use: h(type, props, ...children) */
+/** Instead of JSX, use: html */
 class Main extends Component {
 	render() {
 		const items = [1,2,3,4,5].map( (item) => html`
