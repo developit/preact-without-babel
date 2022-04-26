@@ -12,4 +12,4 @@ Examples are included for both "Classful" Components, and stateless pure functio
 
 > :horse: Supporting older browsers?  Check out [Preact in ES3](https://github.com/developit/preact-in-es3)
 
-[Preact]: https://git.io/preact
+[Preact]: https://github.com/preactjs/preact
